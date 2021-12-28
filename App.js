@@ -1,20 +1,153 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native'; // Importa o NavigationContainer
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+// Importação dos components
+import Autentication from './src/pages/Autentication';
+import Home from './src/pages/Home';
+
+// Importando os produtos
+import tlous from './src/pages/Product/tlous';
+import gtav from './src/pages/Product/gtav';
+import tlous2 from './src/pages/Product/tlous2';
+import rdr2 from './src/pages/Product/rdr2';
+import farcry3 from './src/pages/Product/farcry3';
+import re2 from './src/pages/Product/re2';
+import callofduty from './src/pages/Product/callofduty';
+import wdogs from './src/pages/Product/wdogs'
+import re3 from './src/pages/Product/re3'
+
+
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName='Autentication'>
+        <Stack.Screen 
+          name="Autentication" 
+          component={Autentication}
+          options={{
+            title: 'Loja do Lucas Renan',
+            headerStyle: {
+              backgroundColor: '#ffc300'
+            },
+            headerTintColor: '#001d3d'
+          }} 
+        />
+        <Stack.Screen 
+          name="Home" 
+          component={Home}
+          options={{
+            title: 'Loja do Lucas Renan',
+            headerStyle: {
+              backgroundColor: '#ffc300'
+            },
+            headerTintColor: '#001d3d'
+          }} 
+        />
+
+        <Stack.Screen 
+          name="tlous" 
+          component={tlous}
+          options={{
+            title: 'Loja do Lucas Renan',
+            headerStyle: {
+              backgroundColor: '#ffc300'
+            },
+            headerTintColor: '#001d3d'
+          }} 
+        />
+        <Stack.Screen 
+          name="gtav" 
+          component={gtav}
+          options={{
+            title: 'Loja do Lucas Renan',
+            headerStyle: {
+              backgroundColor: '#ffc300'
+            },
+            headerTintColor: '#001d3d'
+          }} 
+        />
+        <Stack.Screen 
+          name="tlous2" 
+          component={tlous2}
+          options={{
+            title: 'Loja do Lucas Renan',
+            headerStyle: {
+              backgroundColor: '#ffc300'
+            },
+            headerTintColor: '#001d3d'
+          }} 
+        />
+        <Stack.Screen 
+          name="farcry3" 
+          component={farcry3}
+          options={{
+            title: 'Loja do Lucas Renan',
+            headerStyle: {
+              backgroundColor: '#ffc300'
+            },
+            headerTintColor: '#001d3d'
+          }} 
+        />
+        <Stack.Screen 
+          name="rdr2" 
+          component={rdr2}
+          options={{
+            title: 'Loja do Lucas Renan',
+            headerStyle: {
+              backgroundColor: '#ffc300'
+            },
+            headerTintColor: '#001d3d'
+          }} 
+        />
+        <Stack.Screen 
+          name="re2" 
+          component={re2}
+          options={{
+            title: 'Loja do Lucas Renan',
+            headerStyle: {
+              backgroundColor: '#ffc300'
+            },
+            headerTintColor: '#001d3d'
+          }} 
+        />
+        <Stack.Screen 
+          name="wdogs" 
+          component={wdogs}
+          options={{
+            title: 'Loja do Lucas Renan',
+            headerStyle: {
+              backgroundColor: '#ffc300'
+            },
+            headerTintColor: '#001d3d'
+          }} 
+        />
+        <Stack.Screen 
+          name="callofduty" 
+          component={callofduty}
+          options={{
+            title: 'Loja do Lucas Renan',
+            headerStyle: {
+              backgroundColor: '#ffc300'
+            },
+            headerTintColor: '#001d3d'
+          }} 
+        />
+        <Stack.Screen 
+          name="re3" 
+          component={re3}
+          options={{
+            title: 'Loja do Lucas Renan',
+            headerStyle: {
+              backgroundColor: '#ffc300'
+            },
+            headerTintColor: '#001d3d'
+          }} 
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
