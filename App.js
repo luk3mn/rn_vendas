@@ -17,6 +17,8 @@ import callofduty from './src/pages/Product/callofduty';
 import wdogs from './src/pages/Product/wdogs'
 import re3 from './src/pages/Product/re3'
 
+// Importando a tela de carrinho de compras
+import Cart from './src/pages/Cart'
 
 
 const Stack = createNativeStackNavigator();
@@ -24,7 +26,7 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Autentication'>
+      <Stack.Navigator initialRouteName='Cart'>
         <Stack.Screen 
           name="Autentication" 
           component={Autentication}
@@ -139,6 +141,17 @@ export default function App() {
         <Stack.Screen 
           name="re3" 
           component={re3}
+          options={{
+            title: 'Loja do Lucas Renan',
+            headerStyle: {
+              backgroundColor: '#ffc300'
+            },
+            headerTintColor: '#001d3d'
+          }} 
+        />
+        <Stack.Screen 
+          name="Cart" 
+          component={Cart}
           options={{
             title: 'Loja do Lucas Renan',
             headerStyle: {
