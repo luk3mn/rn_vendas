@@ -1,23 +1,33 @@
-// Instalando a animação
-// > expo install react-native-animatable
-
 // Importação das bibliotecas
-import React, { useState } from "react";
-import { View, Text, StyleSheet, SafeAreaView, StatusBar, FlatList } from "react-native"
+import React, { useState, useEffect } from "react";
+import { View, Text, StyleSheet, SafeAreaView, StatusBar, FlatList, Button } from "react-native"
 
 // Importação dos componentes
 import ItemList from "../../components/ItemList";
 
-export default function App() {
+export default function Cart({ route }) {
 
-  const [item, setItem] = useState([
-    { key: 1, item: 'Item 1'},
-    { key: 2, item: 'Item 2'},
-    { key: 3, item: 'Item 3'},
-  ]);
+  const [item, setItem] = useState([]);
+  
+  let selected = route.params.product;
+
+  function addItem() {
+
+    const data = {
+      key: selected,
+      item: selected
+    };
+    
+    setItem([...item, data]);
+  }
+
+  // Quando renderizar a quarta tela executa a função
+  useEffect(()=>{
+    addItem();
+  }, []);
   
   return (
-    <SafeAreaView style={styles.container}> {/* SafeAreaView -> Serve para ajustar a visualização no iphone, no android fica normal */}
+    <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor="#121d31" barStyle="light-content" />
 
       <View style={styles.content}>
@@ -30,7 +40,7 @@ export default function App() {
         showsHorizontalScrollIndicator={false}
         data={item}
         keyExtractor={ (item) => String(item.key) }
-        renderItem={ ({ item }) => <ItemList data={item} /> }
+        renderItem={ ({ item }) => <ItemList data={item}/> }
       />
     </SafeAreaView>
   );

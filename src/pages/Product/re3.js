@@ -14,6 +14,10 @@ export default function Home({ navigation, route }) {
         <Text style={styles.productName}>Pagamento: 5 x R$ 38,59</Text>
       </View>
       <Button 
+        title='Adicionar Item'
+        onPress={() => navigation.navigate('Cart', {product: 'Resident Evil 3'})}
+      />
+      <Button 
         title='Encerrar compra'
         onPress={() => navigation.navigate('Autentication')}
       />
@@ -37,7 +41,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#001d3d',
     paddingVertical: 10,
-    marginVertical: 10,
   },
   images: {
     width: 280, 

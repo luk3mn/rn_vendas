@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "vendas",
-    "slug": "Vendas",
+    "name": "Vendas de jogos",
+    "slug": "vendas",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -23,7 +23,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.lukemn.vendas"
     },
     "web": {
       "favicon": "./assets/favicon.png"

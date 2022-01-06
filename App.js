@@ -26,7 +26,7 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Cart'>
+      <Stack.Navigator initialRouteName='Autentication'>
         <Stack.Screen 
           name="Autentication" 
           component={Autentication}
