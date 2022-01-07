@@ -1,6 +1,6 @@
 // Importação das bibliotecas
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, SafeAreaView, StatusBar, FlatList, Button } from "react-native"
+import { View, Text, StyleSheet, SafeAreaView, StatusBar, FlatList, Button, TouchableOpacityBase, TouchableOpacity } from "react-native"
 
 // Importação dos componentes
 import ItemList from "../../components/ItemList";
@@ -8,41 +8,38 @@ import ItemList from "../../components/ItemList";
 // IMportação do async storage
 import AsyncStorage from "@react-native-async-storage/async-storage"
 
-export default function Cart({ route }) {
+export default function Cart({ navigation, route }) {
 
   const [item, setItem] = useState([]);
   
-  let selected = route.params.product;
+  const selected = route.params.product;
+  // const id = route.params.id;
+  // const selected = 'teste'
 
-  // Quando renderizar a quarta tela executa a função
-  useEffect(()=>{
-    addItem();
-  }, []);
+  // Armazenamento de dados
+  const storeData = async (value) => {
+    try {
+      await AsyncStorage.setItem('@item', JSON.stringify(value));
+    } catch (e) {
+      console.log("ERRO NO SALVAMENTO: " + e);
+    }
+  }
 
-  // Buscando todas as tarefas ao iniciar o app
-  useEffect(()=>{
-    async function loadItem() {
-      const itemStorage = await AsyncStorage.getItem('@item')
-  
-      if (itemStorage) {
-        setItem(JSON.parse(itemStorage));
+  // Leitura de dados
+  const getData = async () => {
+    try {
+      const value = await AsyncStorage.getItem('@item');
+      if (value) {
+        setItem(JSON.parse(value));
       }
+    } catch (e) {
+      console.log("ERRO NA RECUPERAÇÃO: " + e)
     }
-    // loadItem();
-  }, []);
-
-  // Salvando caso tenha alguma tarefa alterada
-  useEffect(() => {
-    async function saveItems() {
-      await AsyncStorage.setItem('@item', JSON.stringify(item));
-    }
-
-    saveItems();
-  }, [item]);
-
-  /* TENTA CORRIGIR ALGUM ERRO NO ASYNC STORAGE */
+  }
   
-  function addItem() {
+  // Adiciona os items da compra à lista
+  const addItem = function() {
+    // if (id == 1) return;
 
     const data = {
       key: selected,
@@ -52,9 +49,23 @@ export default function Cart({ route }) {
     setItem([...item, data]);
   }
 
-  function cleanItems() {
+  /* AJUSTES
+    - Replicar os ajustes da tela TLOUS para as outras telas de compras
+      ou tentar montar um modal e pegar de forma dinamica
+    - Corrigir o problema de não limpar a lista quando encerrar a compra  
+  */
+  const cleanItems = function() {
     setItem('');
+    // navigation.navigate('Autentication');
   }
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  useEffect(() => {
+    storeData(item);
+  }, [item]);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -62,6 +73,13 @@ export default function Cart({ route }) {
 
       <View style={styles.content}>
         <Text style={styles.title}> Produtos selecionados </Text>
+        <Text style={styles.item}>Item Escolhido: {selected}</Text>
+        <TouchableOpacity
+          style={styles.btnItems}
+          onPress={addItem}
+        >
+          <Text style={styles.btnItemsText}>Adicionar Item</Text>
+        </TouchableOpacity>
       </View>
 
       {/* Construção da lista */}
@@ -86,6 +104,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#000814"
   },
+  content: {
+    alignItems: "center",
+  },
   title: {
     fontSize: 25,
     fontWeight: 'bold',
@@ -93,4 +114,23 @@ const styles = StyleSheet.create({
     margin: 10,
     color: "#fff"
   },
+  item: {
+    fontSize: 15,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: "#fff"
+  },
+  btnItems: {
+    backgroundColor: "#ffc300",
+    width: 150,
+    padding: 5,
+    marginVertical: 5,
+    borderRadius: 7,
+  },
+  btnItemsText: {
+    color: '#000814',
+    fontSize: 18,
+    fontWeight: '700',
+    textAlign: 'center'
+  }
 })

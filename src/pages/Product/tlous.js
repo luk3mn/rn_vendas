@@ -1,7 +1,9 @@
 import React from "react";
 import { View, Text, StyleSheet, Image, TouchableOpacity, Button } from 'react-native'
+import { Ionicons } from "@expo/vector-icons";
 
 export default function Home({ navigation, route }) {
+  
   return (
     <View style={styles.container}>
       <View>
@@ -13,14 +15,12 @@ export default function Home({ navigation, route }) {
         <Text style={styles.productName}>R$99,90</Text>
         <Text style={styles.productName}>Pagamento: 5 x R$ 20</Text>
       </View>
-      <Button 
-        title='Adicionar Item'
+      <TouchableOpacity
+        style={styles.cart}
         onPress={() => navigation.navigate('Cart', {product: 'The Last of Us'})}
-      />
-      <Button 
-        title='Encerrar compra'
-        onPress={() => navigation.navigate('Autentication')}
-      />
+      >
+        <Ionicons name="cart-outline" size={40} color={"#fff"} />
+      </TouchableOpacity>
     </View>
   )
 }
@@ -51,5 +51,10 @@ const styles = StyleSheet.create({
     color: "#ffc300",
     fontSize: 17,
     fontWeight: "600",
+  },
+  cart: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   }
 })

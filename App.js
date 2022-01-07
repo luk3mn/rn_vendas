@@ -20,7 +20,6 @@ import re3 from './src/pages/Product/re3'
 // Importando a tela de carrinho de compras
 import Cart from './src/pages/Cart'
 
-
 const Stack = createNativeStackNavigator();
 
 export default function App() {
