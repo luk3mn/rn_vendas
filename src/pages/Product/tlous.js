@@ -1,9 +1,8 @@
 import React from "react";
-import { View, Text, StyleSheet, Image, TouchableOpacity, Button } from 'react-native'
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import { Ionicons } from "@expo/vector-icons";
 
 export default function Home({ navigation, route }) {
-  
   return (
     <View style={styles.container}>
       <View>

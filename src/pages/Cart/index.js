@@ -14,10 +14,7 @@ export default function Cart({ navigation, route }) {
   
   const selected = route.params.product;
   // const id = route.params.id;
-  // const selected = 'teste'
   const [hist, setHist] = useState('');
-  // const id = 5;
-  // const [idItems, setIdItems] = useState([]);
 
   // Armazenamento de dados
   const storeData = async (value) => {
@@ -39,22 +36,14 @@ export default function Cart({ navigation, route }) {
       console.log("ERRO NA RECUPERAÇÃO: " + e)
     }
   }
-  
+
   // Adiciona os items da compra à lista
   const addItem = function() {
-    /*for (let i = 0; i < idItems.length; i++) {
-      if (id == idItems[i]) {
-        return;
-      }
-    }
-
-    const data = {
-      key: idItems,
-      item: idItems
-    };
-    
-    setItem([...item, data]);
-    setIdItems([...id, array])*/
+    // for (let i = 0; i < idItems.length; i++) {
+    //   if (id == idItems[i]) {
+    //     return;
+    //   }
+    // }
 
     if (hist == selected) {
       alert("Produto ja foi adicionado");
