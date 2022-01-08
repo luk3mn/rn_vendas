@@ -15,6 +15,9 @@ export default function Cart({ navigation, route }) {
   const selected = route.params.product;
   // const id = route.params.id;
   // const selected = 'teste'
+  const [hist, setHist] = useState('');
+  // const id = 5;
+  // const [idItems, setIdItems] = useState([]);
 
   // Armazenamento de dados
   const storeData = async (value) => {
@@ -39,24 +42,42 @@ export default function Cart({ navigation, route }) {
   
   // Adiciona os items da compra à lista
   const addItem = function() {
-    // if (id == 1) return;
+    /*for (let i = 0; i < idItems.length; i++) {
+      if (id == idItems[i]) {
+        return;
+      }
+    }
 
     const data = {
-      key: selected,
-      item: selected
+      key: idItems,
+      item: idItems
     };
     
     setItem([...item, data]);
-  }
+    setIdItems([...id, array])*/
 
+    if (hist == selected) {
+      alert("Produto ja foi adicionado");
+    } else {
+      const data = {
+        key: selected,
+        item: selected
+      };
+      
+      setItem([...item, data]);
+      setHist(selected);
+    }
+    
+  }
+        
   /* AJUSTES
     - Replicar os ajustes da tela TLOUS para as outras telas de compras
       ou tentar montar um modal e pegar de forma dinamica
     - Corrigir o problema de não limpar a lista quando encerrar a compra  
   */
-  const cleanItems = function() {
-    setItem('');
-    // navigation.navigate('Autentication');
+  const terminate = async() => {
+    await setItem(""); // Limpa o campo
+    navigation.navigate('Autentication');
   }
 
   useEffect(() => {
@@ -71,8 +92,7 @@ export default function Cart({ navigation, route }) {
     <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor="#121d31" barStyle="light-content" />
 
-      <View style={styles.content}>
-        <Text style={styles.title}> Produtos selecionados </Text>
+      <View style={styles.content}>     
         <Text style={styles.item}>Item Escolhido: {selected}</Text>
         <TouchableOpacity
           style={styles.btnItems}
@@ -80,6 +100,7 @@ export default function Cart({ navigation, route }) {
         >
           <Text style={styles.btnItemsText}>Adicionar Item</Text>
         </TouchableOpacity>
+        <Text style={styles.title}> Produtos selecionados </Text>
       </View>
 
       {/* Construção da lista */}
@@ -92,7 +113,7 @@ export default function Cart({ navigation, route }) {
       />
       <Button 
         title="Encerrar Compra"
-        onPress={cleanItems}
+        onPress={terminate}
       />
     </SafeAreaView>
 
@@ -111,13 +132,14 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontWeight: 'bold',
     textAlign: 'center',
-    margin: 10,
+    marginBottom: 10,
     color: "#fff"
   },
   item: {
     fontSize: 15,
     fontWeight: 'bold',
     textAlign: 'center',
+    marginTop: 10,
     color: "#fff"
   },
   btnItems: {
